@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {
+        ios::sync_with_stdio(0);
+        cin.tie(0);
+                int count = 0;
+                while ( m != n) {
+                    m = m >> 1;
+                    n = n >> 1;
+                    count++;
+                }
+                
+                return m << count;
+    }
+};

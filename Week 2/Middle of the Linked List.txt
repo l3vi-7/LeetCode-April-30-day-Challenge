@@ -1,0 +1,42 @@
+
+-------------------------------Naive Approach---------------------------------------
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* temp = head;
+        int len = 0;
+        while (temp != NULL) {
+            len++;
+            temp = temp -> next;
+        }
+        
+            temp = head;
+            int t = len/2;
+            while (t--) {
+                temp = temp -> next;
+                
+            }
+        //cout << len << endl;
+        
+        return temp;
+    }
+};
+
+
+----------------------------Flyod's Approach--------------------------------------
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* fast = head, * slow = head;
+        
+        while (fast != NULL && fast-> next != NULL) {
+            slow = slow-> next;
+            fast = fast -> next -> next;
+        }
+        
+        return slow;
+    }
+};
+

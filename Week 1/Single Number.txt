@@ -1,0 +1,38 @@
+
+----------------------------------Final Approach------------------------------
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        ios::sync_with_stdio(0); cin.tie(0);
+        cout.tie(0);
+        int a = 0;
+        for (auto i : nums) {
+            a ^= i;
+        }
+        return a;
+    }
+};
+
+
+----------------------------------First Approach---------------------------------
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        if (nums.size() == 1)
+            return nums.at(0);
+        map <int, int> m;
+        for (auto i : nums) {
+            m[i] += 1;
+        }
+        int k;
+        for (auto i : m) {
+            if (i.second == 1) {
+                k = i.first;
+                break;
+            }   
+        }
+        return k;
+    }
+};

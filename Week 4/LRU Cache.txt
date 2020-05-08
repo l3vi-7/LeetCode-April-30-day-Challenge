@@ -1,0 +1,44 @@
+class LRUCache {
+public:
+    unordered_map <int, int> mp;
+    deque <int> q;
+    int size = 0;
+    LRUCache(int capacity) {
+        size = capacity;
+    }
+    
+    int get(int key) {
+        auto it = find(q.begin(), q.end(), key);
+        if (it != q.end()) {
+            int val = mp[key];
+            q.erase(it);
+            q.push_front(key);
+            return val;
+        } else {
+            return -1;
+        }
+    }
+    
+    void put(int key, int value) {
+        auto it = find(q.begin(), q.end(), key);
+        if (it != q.end()) {
+            mp.erase(key);
+            q.erase(it);
+        } 
+        if (q.size() == size) {
+            auto k = q.back();
+            mp.erase(k);
+            q.pop_back();
+        }
+        q.push_front(key);
+        mp[key] = value;
+    }
+};
+
+
+auto speedup=[](){
+    std::ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    return nullptr;
+}();

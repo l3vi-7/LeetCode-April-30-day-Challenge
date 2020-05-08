@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int digitSum (int n) {
+        int k = 0, d;
+        while (n > 0) {
+            d = n % 10;
+            k += d*d;
+            n /= 10;
+        }
+        return k;
+    }
+    bool isHappy(int n) {
+        int single_step, double_step;
+        single_step = double_step = n;
+        do {
+            single_step = digitSum(single_step);
+            double_step = digitSum(double_step);
+            double_step = digitSum(double_step);
+            if (double_step == 1) 
+                return 1;
+        } while (single_step != double_step);
+            return 0;
+    }
+};

@@ -1,0 +1,23 @@
+
+#Bad Solution but easy implementation
+
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        multiset <char> s;
+        map <multiset<char>, vector<string>> m;
+        for (auto i: strs) {
+            for (auto j: i) {
+                s.insert(j);
+            }
+            m[s].push_back(i);
+            s.clear();
+        }
+        vector<vector<string>> v;
+        for (auto i: m) {
+            v.push_back(i.second);
+        }
+        
+        return v;
+    }
+};

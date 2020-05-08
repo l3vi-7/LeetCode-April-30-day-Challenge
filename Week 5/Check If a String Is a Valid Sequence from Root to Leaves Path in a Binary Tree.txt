@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool dfs (TreeNode* root, vector <int> a, int inx) {
+        if (a[inx] != root->val)
+            return false;
+        if (inx == a.size()-1) {
+            if (!root->left && !root->right)
+                return true;
+            else
+                return false;
+        }
+        return ((root->left && dfs(root->left, a, inx + 1)) || (root->right && dfs(root->right, a, inx+1)));
+    }
+    bool isValidSequence(TreeNode* root, vector<int>& arr) {
+        if (!root) {
+            return arr.size() == 0;
+        }
+        return dfs(root, arr, 0);
+    }
+};

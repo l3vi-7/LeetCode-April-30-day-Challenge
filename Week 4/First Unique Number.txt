@@ -1,0 +1,39 @@
+class FirstUnique {
+public:
+    queue <int> q;
+    map <int,int> mp;
+    FirstUnique(vector<int>& nums) {
+        for (auto i : nums) {
+            if (mp.find(i) == mp.end()) {
+                q.push(i);
+                mp[i] += 1;
+            } else {
+                mp[i] += 1;
+            }
+        }
+        while (mp[q.front()] > 1) {
+            q.pop();
+        }
+    }
+    
+    int showFirstUnique() {
+        while (mp[q.front()] > 1) {
+            q.pop();
+        }
+        if (q.size() == 0)
+            return -1;
+        return q.front();
+    }
+    
+    void add(int value) {
+        if (mp.find(value) == mp.end()) {
+                q.push(value);
+                mp[value] += 1;
+            } else {
+                mp[value] += 1;
+            }
+        while (mp[q.front()] > 1) {
+            q.pop();
+        }
+    }
+};

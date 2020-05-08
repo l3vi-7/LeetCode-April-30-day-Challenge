@@ -1,0 +1,41 @@
+class Solution {
+public:
+    /*void print (vector<vector<int>> &grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        for ( int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cout << grid[i][j] << ' ';
+            }
+            cout << endl;
+        }
+    }*/
+    
+    int minPathSum(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        int s1 = INT_MAX, s2 =INT_MAX;
+        vector<vector<int>> sum (m, vector <int> (n, INT_MAX));
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 && j == 0) {
+                    sum[i][j] = grid[0][0];
+                } else {
+                    if (i - 1 >= 0)
+                        s1 = sum[i - 1][j];
+                    else
+                        s1 = INT_MAX;
+                    if (j - 1 >= 0)
+                        s2 = sum[i][j - 1];
+                    else
+                        s2 = INT_MAX;
+                    sum[i][j] = grid[i][j] + min(s1, s2);
+                }
+            }
+        }
+        
+        //print(sum);
+        
+        return sum[m - 1][n - 1];
+    }
+};

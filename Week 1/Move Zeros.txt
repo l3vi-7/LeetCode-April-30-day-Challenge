@@ -1,0 +1,41 @@
+
+--------------------------------Final Approach-------------------------------
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        vector <int> copy;
+        int count = 0;
+        for (auto i : nums) {
+            if (i == 0)
+                count++;
+            else
+                copy.push_back(i);
+        }
+        while (count--)
+            copy.push_back(0);
+        
+        nums = copy;
+    }
+};
+
+
+--------------------------------First Approach--------------------------------
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+        int count = 0;
+        int n = nums.size();
+        for ( int  i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                nums[count] = nums[i];
+                count++;
+            }
+        }
+        
+        for (int i = count; i < n; i++)
+            nums[i] = 0;
+    }
+};

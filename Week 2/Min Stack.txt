@@ -1,0 +1,56 @@
+-------------------------------------Final Approach------------------------------------
+
+class MinStack {
+public:
+    /** initialize your data structure here. */
+    stack <pair<int,int>> s;
+    int min_ele;
+    MinStack() {
+    }
+    
+    void push(int x) {
+        if (s.size() == 0)
+            s.push({x, x});
+        else
+            s.push({x, min(x, s.top().second)});
+    }
+    
+    void pop() {
+        s.pop();
+    }
+    
+    int top() {
+        return s.top().first;
+    }
+    
+    int getMin() {
+        return s.top().second;
+    }
+};
+
+-------------------------------------Initial Approach----------------------------------
+
+class MinStack {
+public:
+    /** initialize your data structure here. */
+    vector <int> v;
+    MinStack() {
+    }
+    
+    void push(int x) {
+        v.push_back(x);  
+    }
+    
+    void pop() {
+        v.pop_back();
+    }
+    
+    int top() {
+        return v.at(v.size() - 1);
+    }
+    
+    int getMin() {
+        auto i = min_element (v.begin(), v.end());
+        return *i;
+    }
+};

@@ -1,0 +1,47 @@
+class Solution {
+public:
+    string stringShift(string s, vector<vector<int>>& shift) {
+        int finalS = 0;
+        int n = s.size();
+        for (auto i : shift) {
+            if (i[0] == 0)
+                finalS -= i[1];
+            else
+                finalS += i[1];
+        }
+        //cout << "finalS " << finalS <<endl;
+        if (finalS > 0) {
+            if (finalS > n)
+                finalS = finalS % n;
+            string temp = "";
+            for (int i = n - finalS; i < n; i++)
+                temp += s[i];
+            //cout << "temp " << temp << endl;
+            //cout << "s " << s << endl;
+            for (int i = n - finalS - 1; i >= 0; i--) {
+                s[i + finalS] = s[i];
+            }
+            for (int i = 0 ; i < temp.size(); i++)
+                s[i] = temp[i];
+            
+        }else if (finalS < 0) {
+            finalS *= -1;
+            if (finalS > n)
+                finalS = finalS % n;
+            string temp = "";
+            for (int i = 0; i < finalS; i++) {
+                temp += s[i];
+            }
+            for (int i = finalS; i < n; i++) {
+                s[i - finalS] = s[i];
+            }
+            int k = 0;
+            for (int i = n - finalS; i < n; i++) {
+                s[i] = temp[k];
+                k++;
+            }
+        }
+        
+        return s;
+    }
+};

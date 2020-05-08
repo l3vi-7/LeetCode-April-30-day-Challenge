@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int maxDepth(TreeNode *root) {
+        if (root == NULL)
+            return 0;
+        else {
+            int ldepth = maxDepth(root->left);
+            int rdepth = maxDepth(root->right);
+            
+            int max_dep = max(ldepth, rdepth) + 1;
+            
+            return max_dep;
+        }
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        if (root == NULL)
+            return 0;
+        else {
+            //int diameter = max(diameterOfBinaryTree(root->left), diameterOfBinaryTree(root-> right), maxDepth(root->left) + maxDepth(root->right));
+            int ld = diameterOfBinaryTree(root->left);
+            int rd = diameterOfBinaryTree(root-> right);
+            int md = max(ld, rd);
+            return max(md, maxDepth(root->left) + maxDepth(root->right));
+                
+        }
+    }
+};

@@ -1,0 +1,50 @@
+
+
+------------------------------Initial Approach-------------------------------
+
+class Solution {
+public:
+    int countElements(vector<int>& arr) {
+        set <int> s (arr.begin(), arr.end());
+        int count = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            if (find(s.begin(), s.end(), arr[i] + 1) != s.end())
+                count++;
+        }
+        return count;
+    }
+};
+
+
+
+-------------------------------Final Approach------------------------------------
+
+class Solution {
+public:
+    int countElements(vector<int>& arr) {
+        ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+        map <int, int> m;
+        int count = 0;
+        for (auto i : arr) {
+            m[i] += 1;
+        }
+        int prev = -1, prev_c = 0;
+        for (auto i : m) {
+            //cout << "prev " << prev << endl;
+            //cout << "i first " << i.first << endl;
+            if (prev == -1) {
+                prev = i.first;
+                prev_c = i.second;
+            }
+            else {
+                if (i.first == (prev + 1)) {
+                    count += prev_c;
+                    //cout << "count " << count << endl;
+                }
+                prev = i.first;
+                prev_c = i.second;
+            }
+        }
+        return count;
+    }
+};

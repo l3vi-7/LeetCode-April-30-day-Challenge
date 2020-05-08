@@ -1,0 +1,45 @@
+class Solution {
+public:
+    TreeNode* insertion (TreeNode* root, int a) {
+        //cout << "debug" << endl;
+        TreeNode *nn = new TreeNode();
+        nn->val = a;
+        nn->left = nn->right;
+        if (root == NULL) {
+            root = nn;
+        } else {
+            TreeNode *temp = root;
+            while (true) {
+                if (a > temp->val) {
+                    if (temp->right)
+                        temp = temp->right;
+                    else {
+                        temp->right = nn;
+                        break;
+                    }
+                } else {
+                    if (temp->left)
+                        temp = temp->left;
+                    else {
+                        temp->left = nn;
+                        break;
+                    }
+                }
+            }
+        }
+        return root;
+    }
+    
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        int n = preorder.size();
+        TreeNode* root = new TreeNode ();
+        root = NULL;
+        if (n > 0) {
+            for (int i = 0; i < n; i++) {
+                root = insertion(root, preorder[i]);
+            }
+        }
+        
+        return root;
+    }
+};
